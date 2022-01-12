@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app1">
+        <h1>{{ titulo1 }}</h1>
+        <button @click="alterar">Mudar</button>
+    </div>    
+    <div id="app2">
+        <h1>{{ titulo2 }}</h1>
+        <button @click="alterar">Mudar</button>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+
+ let vm1 = new Vue({
+    el:"#app1",
+    data: {
+        titulo1:"Teste 1"
+    },
+    methods: {
+        alterar() {
+            vm2.titulo2 = "?????"
+        }
+    }
+})
+
+let vm2 = new Vue({
+    el:"#app2",
+    data: {
+        titulo2:"Teste 2"
+    },
+    methods: {
+        alterar() {
+            vm1.titulo1 = "!!!!S"
+        }
+    }
+})
+
+setTimeout(()=>{
+    vm1.titulo1 = "Mudei pelo Time"
+}, 4000)
+
+</script>
+</body>
+</html>

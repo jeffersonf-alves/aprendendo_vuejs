@@ -1,0 +1,44 @@
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+
+<div id="app">
+
+</div>
+
+<script>
+    const vm = new Vue({
+        template: `
+            <div>
+                <h1>{{ aula }}</h1>
+                <h2>{{ modulo }}</h2>
+                <button @click="alterarAula">Alterar Aula</button>
+                <button @click="alterarModulo">Alterar Módulo</button>
+                <button @click="incrementar">Incrementar</button>
+                <h1>{{ contador }}</h1>
+            </div>
+        `,
+        el:"#app",
+        data: {
+            aula:"Aula: Montando instancia vue",
+            modulo: "Módulo: Instancia Vue",
+            contador: 0
+        },
+        methods: {
+            alterarAula() {
+                this.aula += "#"
+            },
+            alterarModulo() {
+                this.modulo += "#"
+            },
+            incrementar(){ setInterval(()=>{
+                    this.contador+=1
+            }, 1000) }
+        }
+    })
+
+    
+    // vm.incrementar()
+   
+  
+</script>
