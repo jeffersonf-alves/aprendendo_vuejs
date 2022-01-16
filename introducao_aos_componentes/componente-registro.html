@@ -1,0 +1,42 @@
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+
+<div id="app1">
+    <comp></comp>
+    <comp></comp>
+    <comp></comp>
+</div>
+<div id="app2">
+    <comp></comp>
+    <comp></comp>
+    <comp></comp>
+</div>
+<script>
+    Vue.component('comp', {
+        template: `
+            <div>
+                <h1>{{ contador }}</h1>
+                <button @click="contador++">Somar</button>
+                <button @click="contador--">Subrair</button>
+            </div>`,
+        data: function() {
+            return {
+                contador: 0
+            }
+        }
+    })
+
+    const vm = new Vue({
+        el:"#app1"
+    })
+
+    const vm2 = new Vue({
+        el:"#app2"
+    })
+
+
+
+   
+  
+</script>
