@@ -2,7 +2,7 @@
 	<div id="app">
 		<h1>Registrar Reclamação</h1>
 		<div class="conteudo">
-			<form class="painel">
+			<form class="painel" v-if="!enviado">
 				<div class="cabecalho">Formulário</div>
 				<Rotulo nome="E-mail">
 					<input type="text" v-model="usuario.email">
@@ -32,17 +32,22 @@
 					<span><input type="radio" value="outro" v-model="produto"> Outro</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
-					<select name="" id="">
-						<option></option>
+					<select v-model="prioridade" name="" id="">
+						<option v-for="prioridade in prioridades" 
+							:value="prioridade.cod" 
+							:key="prioridade.cod"
+							:selected="prioridade.cod === 2">
+							{{prioridade.name}}
+						</option>
 					</select>
 				</Rotulo>
 				<Rotulo nome="Primeira Reclamação?">
 					<Escolha />
 				</Rotulo>
 				<hr>
-				<button>Enviar</button>
+				<button @click.prevent="enviar">Enviar</button>
 			</form>
-			<div class="painel">
+			<div class="painel" v-else>
 				<div class="cabecalho">Resultado</div>
 				<Rotulo nome="E-mail">
 					<span>{{ usuario.email}}</span>
@@ -68,7 +73,7 @@
 					<span>{{ produto }}</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
-					<span>???</span>
+					<span>{{ prioridade }}</span>
 				</Rotulo>
 				<Rotulo nome="Primeira Reclamação?">
 					<span>???</span>
@@ -89,12 +94,25 @@ export default {
 			mensagem: "",
 			caracteristicas: [],
 			produto:"",
+			prioridade: 1,
+			prioridades: [
+				{ cod:1, name: "Regular"},
+				{ cod:2, name: "Média"},
+				{ cod:3, name: "Importante"},
+				{ cod:4, name: "Extremamente importante"}
+			],
 			usuario: {
 				email: "",
 				senha: "",
 				idade: 0, 
-			}
+			},
+			enviado: false
 	
+		}
+	},
+	methods: {
+		enviar(){
+			this.enviado = true
 		}
 	},
 	components: { Rotulo, Escolha }
